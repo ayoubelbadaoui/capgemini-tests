@@ -76,15 +76,17 @@ class SearchScreen extends ConsumerWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     final songData = res[index];
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(songData.artworkUrl100),
+                    return Card(
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(songData.artworkUrl100),
+                        ),
+                        title: Text(songData.artistName),
+                        subtitle:
+                            songData.trackCensoredName != null
+                                ? Text(songData.trackCensoredName!)
+                                : null,
                       ),
-                      title: Text(songData.artistName),
-                      subtitle:
-                          songData.trackCensoredName != null
-                              ? Text(songData.trackCensoredName!)
-                              : null,
                     );
                   },
                   separatorBuilder: (_, __) => SizedBox(height: 12),
